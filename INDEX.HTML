@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mehnaaz Husain Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Basic reset and box-sizing */
+        * { box-sizing: border-box; }
+
+        /* Body styling - font, margin, padding, background, color, line-height */
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px; /* Default padding */
+            /* Removed background-color here, will be handled by the background container */
+            color: #1a1a1a;
+            line-height: 1.6;
+            transition: color 0.3s ease; /* Only transition color */
+            /* Ensure body is positioned for absolute children */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scrollbar from petals */
+        }
+
+        /* Dark mode styles for the body */
+        body.dark-mode {
+            /* Removed background-color here */
+            color: #f5f5f5;
+        }
+
+        /* Media query for smaller screens: reduce body padding */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+        }
+
+        /* --- Background Image Container Styles --- */
+        .background-container {
+            position: fixed; /* Fixed position to cover the viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Place the background behind everything */
+            overflow: hidden; /* Hide any overflow from the image */
+            background-color: #f9f9f9; /* Default background color */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Dark mode styles for the background container */
+        .background-container.dark-mode {
+            background-color: #121212;
+        }
+
+        .background-image {
+            display: block; /* Remove extra space below image */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the entire container while maintaining aspect ratio */
+            filter: brightness(70%); /* Adjust brightness for better text readability (was 50% for video) */
+            /* Adjusted transition duration for filter and transform properties */
+            transition: filter 1s ease-in-out, transform 1s ease-in-out;
+            /* Default scale for light mode */
+            transform: scale(1);
+        }
+
+        /* Dark mode styles for the background image */
+        .background-image.dark-mode {
+            filter: brightness(40%); /* Darken more in dark mode */
+            /* Slightly zoom in for dark mode */
+            transform: scale(1.05);
+        }
+
+
+        /* Container for the dark mode toggle and local time display */
+        .top-left-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000; /* Ensure it stays on top */
+            display: flex; /* Use flexbox to arrange children */
+            align-items: center; /* Vertically align items */
+            gap: 15px; /* Space between the toggle and time */
+            flex-wrap: wrap; /* Allow wrapping on very small screens */
+        }
+
+        /* Styling for the local time and date display */
+        #local-time-display {
+            /* Removed text-align: center as it's now in a flex container */
+            margin-bottom: 0; /* Remove bottom margin */
+            font-size: 0.9rem;
+            color: #555; /* Default color */
+            transition: color 0.3s ease;
+        }
+
+        /* Dark mode styles for the local time and date display */
+        #local-time-display.dark-mode {
+            color: #bbb;
+        }
+
+
+        /* Fixed positioning for the PDF download button container */
+        .pdf-download {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000; /* Ensure it stays on top */
+        }
+
+        /* Styling for the download button - Now with circular background and shadow */
+        #download-btn {
+            background-color: white; /* Circular background */
+            border: 1px solid #ccc; /* Subtle border */
+            padding: 8px; /* Padding to give space around the icon */
+            border-radius: 50%; /* Makes it circular */
+            cursor: pointer;
+            display: flex; /* Use flex to center icon */
+            align-items: center;
+            justify-content: center;
+            width: 40px; /* Set a fixed size for the clickable area */
+            height: 40px;
+            font-size: 0.9rem; /* Adjust font size if needed */
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+            color: #1a1a1a; /* Default icon color */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+
+        #download-btn:hover {
+            background-color: #f0f0f0; /* Hover background */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
+        }
+
+        /* Dark mode styles for the download button */
+        #download-btn.dark-mode {
+            background-color: #222; /* Dark mode background */
+            border-color: #555; /* Dark mode border color */
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Dark mode shadow */
+        }
+        #download-btn.dark-mode:hover {
+            background-color: #333; /* Dark mode hover background */
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* Dark mode larger shadow on hover */
+        }
+
+
+        /* Icon base styling */
+        .icon {
+            width: 20px; /* Slightly larger icon */
+            height: 20px;
+            stroke-width: 1.5; /* Adjust icon stroke thickness */
+        }
+
+        /* Main content container styling */
+        .container {
+            max-width: 800px;
+            margin: auto; /* Center the container */
+            background: #fff;
+            padding: 48px; /* Default padding */
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* Ensure container is above the background */
+            z-index: 1; /* Ensure container is above the background */
+        }
+
+         /* Media query for smaller screens: reduce container padding */
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+        }
+
+
+        /* Dark mode styles for the container */
+        .container.dark-mode {
+            background: #1a1a1a;
+            color: #f5f5f5;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        /* Heading 1 styling */
+        h1 {
+            font-weight: 600;
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+        h1.dark-mode { color: #fff; }
+
+        /* Subtext styling (under H1) */
+        .subtext {
+            text-align: center;
+            color: #888;
+            margin-bottom: 28px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .subtext.dark-mode { color: #bbb; }
+
+
+        /* Contact information grid layout (using flexbox for column layout on small screens) */
+        .contact-grid {
+            display: flex;
+            flex-direction: column; /* Stack items vertically by default */
+            align-items: center; /* Center items horizontally */
+            gap: 8px; /* Gap between rows in the column layout */
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        /* Container for email/phone/languages combo (using flexbox for row layout) */
+        .contact-combo {
+            display: flex;
+            gap: 14px; /* Gap between items in the row layout */
+            align-items: center;
+            justify-content: center; /* Center items horizontally within the combo */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            color: #444;
+            transition: color 0.3s ease;
+        }
+        .contact-combo.dark-mode { color: #eee; }
+
+        /* Individual contact item styling */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+        .contact-item:hover { transform: scale(1.02); }
+        .contact-item.dark-mode { color: #ddd; }
+
+        /* Link styling within contact items */
+        .contact-item a {
+            color: #1a1a1a;
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease;
+        }
+        .contact-item.dark-mode a { color: #fff; }
+        .contact-item a:hover { color: #555; }
+        .contact-item.dark-mode a:hover { color: #aaa; }
+
+        /* Bullet point separator styling */
+        .bullet {
+            font-size: 12px;
+            color: #bbb;
+            transition: color 0.3s ease;
+        }
+        .bullet.dark-mode { color: #777; }
+
+        /* General link styling (for links outside contact items) */
+        a {
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.2s, color 0.3s ease;
+        }
+        a:hover { color: #555; }
+        a.dark-mode { color: #fff; }
+        a.dark-mode:hover { color: #aaa; }
+
+        /* Section styling */
+        section { margin-bottom: 36px; }
+
+        /* Heading 2 styling */
+        h2 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+            color: #222;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+        h2.dark-mode {
+            color: #fff;
+            border-bottom-color: #444;
+        }
+
+        /* Unordered list styling */
+        ul {
+            padding-left: 1.2rem;
+            margin: 0;
+            list-style-type: disc;
+        }
+
+        /* List item styling */
+        li {
+            margin-bottom: 6px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        li.dark-mode { color: #eee; }
+
+        /* Paragraph styling */
+        p {
+            margin: 0 0 10px 0;
+            color: #444;
+            transition: color 0.3s ease;
+        }
+        p.dark-mode { color: #ddd; }
+
+        /* Experience entry container */
+        .experience-entry {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        /* Experience company name styling */
+        .experience-company {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #222;
+            transition: color 0.3s ease;
+        }
+        .experience-company.dark-mode { color: #fff; }
+
+        /* Experience role styling */
+        .experience-role {
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .experience-role.dark-mode { color: #eee; }
+
+        /* Experience duration styling */
+        .experience-duration {
+            font-size: 0.85rem;
+            color: #777;
+            transition: color 0.3s ease;
+        }
+        .experience-duration.dark-mode { color: #bbb; }
+
+        /* Skills section grid layout */
+        .skills-section {
+            display: grid;
+            /* Auto-fit columns with a minimum width of 200px, filling available space */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        /* Accomplishments list styling */
+        .accomplishments-section ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        /* Interests section layout (using flexbox for wrapping items) - Adjusted gap */
+        .interests-section {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            gap: 4px; /* Decreased gap further */
+            margin-top: 10px;
+        }
+
+        /* Individual interest item styling (pill shape) - Adjusted font-size */
+        .interest-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 24px; /* Creates the pill shape */
+            font-size: 0.95rem; /* Slightly increased font size */
+            color: #333;
+            transition: color 0.3s ease;
+            /* Background and border can be added here if desired */
+            /* background-color: #eee; */
+            /* border: 1px solid #ccc; */
+        }
+
+        /* Dark mode styles for interest items */
+        .interest-item.dark-mode {
+             color: #eee;
+             /* background-color: #333; */
+             /* border-color: #555; */
+        }
+
+        /* Fixed positioning for the dark mode toggle button */
+        /* Removed fixed positioning and relies on parent .top-left-controls */
+        #dark-mode-toggle {
+            /* position: fixed; */
+            /* top: 20px; */
+            /* left: 20px; */
+            z-index: 1000; /* Ensure it stays on top */
+            background: white;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 50%; /* Makes it a circle */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #download-btn:hover {
+            opacity: 1;
+            background-color: #f0f0f0;
+             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Dark mode styles for the toggle button */
+        #download-btn.dark-mode {
+            background: #222;
+            border-color: #555;
+            color: #fff;
+        }
+        #download-btn.dark-mode:hover { background: #333; }
+
+        /* Ensure icon inside toggle button inherits color */
+        #dark-mode-toggle i { width: 20px; height: 20px; }
+
+        /* Hide the theme text visually but keep for accessibility */
+        #theme-text {
+             position: absolute;
+             width: 1px;
+             height: 1px;
+             padding: 0;
+             margin: -1px;
+             overflow: hidden;
+             clip: rect(0, 0, 0, 0);
+             white-space: nowrap;
+             border: 0;
+        }
+
+        /* Added margin-top to the contact-item for the website link */
+        .contact-grid .contact-item:last-child {
+            margin-top: 10px; /* Adjust the value as needed for desired spacing */
+        }
+
+        /* Styling for subtle graduation years - Adjusted font-size */
+        .graduation-year {
+            font-weight: 300; /* Lighter font weight */
+            color: #777;
+            font-style: normal; /* Remove italics */
+            font-size: 0.85rem; /* Made slightly smaller */
+            transition: color 0.3s ease;
+        }
+
+        /* Dark mode styles for subtle graduation years */
+        .graduation-year.dark-mode {
+            color: #bbb;
+        }
+
+        /* --- Cursor Petal Trail Styles --- */
+        .petal {
+            position: absolute;
+            /* Initial size defined here, will be overridden by JS for variation */
+            width: 15px;
+            height: 15px;
+            /* Removed background-color from CSS */
+            border-radius: 50% 0; /* Creates a petal shape */
+            pointer-events: none; /* Allow interactions with elements below */
+            opacity: 1;
+            transform-origin: 50% 50%; /* Rotate around the center */
+            /* Animation uses a CSS variable for the final rotation */
+            animation: fadeOutPetal 2s ease-out forwards;
+            z-index: 999; /* Ensure petals are below fixed elements but above content */
+             /* Added transition for background-color */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Keyframes for the fade out animation - Adjusted translateY and uses CSS variable for rotation */
+        @keyframes fadeOutPetal {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(150px) rotate(var(--final-rotation)); } /* Increased translateY for more fall, uses random final rotation */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="background-container" id="background-container">
+        <img src="https://static.wixstatic.com/media/9ba0fd_69c4253c16cd49fea718d234fbf98e47~mv2.png" alt="Background image of sunflowers" class="background-image" id="background-image">
+    </div>
+
+    <div class="top-left-controls">
+        <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+            <i data-lucide="sun" id="theme-icon" class="icon"></i>
+            <span id="theme-text">Light Mode</span>
+        </button>
+        <div id="local-time-display"></div>
+    </div>
+
+
+    <div class="pdf-download">
+        <button id="download-btn" aria-label="Download Resume as PDF">
+            <i data-lucide="download" class="icon"></i>
+        </button>
+    </div>
+
+    <div class="container" id="resume-content">
+        <h1>Mehnaaz Husain</h1>
+        <p class="subtext">Illustrator, Animator, Designer</p>
+
+        <div class="contact-grid">
+            <div class="contact-combo" id="contact-combo">
+                 <div class="contact-item">
+                    <i data-lucide="phone" class="icon"></i>
+                    <a href="tel:+919461153073" id="phone-link">
+                         <span id="phone-number-container">+91 9461 153 073</span>
+                    </a>
+                </div>
+                <span class="bullet">&bull;</span>
+                <div class="contact-item">
+                    <i data-lucide="mail" class="icon"></i>
+                    <a href="mailto:mehnaazhusain@gmail.com?subject=Regarding%20your%20profile&body=Hey%20I%20just%20saw%20your%20profile%20and...">mehnaazhusain@gmail.com</a>
+                </div>
+                 <span class="bullet">&bull;</span>
+                 <div class="contact-item" id="languages-item">
+                    <i data-lucide="message-square" class="icon"></i>
+                    <span>English, Hindi</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i data-lucide="globe" class="icon"></i>
+                <a href="https://www.meforya.com" target="_blank" rel="noopener noreferrer">meforya.com</a>
+            </div>
+        </div>
+
+        <section>
+            <h2>About</h2>
+            <p>I am a visual designer and storyteller. My work is deeply driven by emotions, experiences and colors that I am surrounded with. I love to sew details into my narratives often driven by an empathetic understanding of the character and journey. I aim to start conversations and create a spark of thought into the audience’s mind with my work.</p>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <p>
+                <strong>Bachelor of Design (B.Des)</strong><br>
+                <span style="display: inline-flex; align-items: center; gap: 6px;">
+                    <i data-lucide="map-pin" class="icon"></i>
+                    <a href="https://nid.ac.in/" target="_blank" rel="noopener noreferrer">National Institute of Design, Andhra Pradesh</a>
+                </span><br>
+                <span class="graduation-year">Graduated 2024</span>
+            </p>
+            <p>
+                <strong>Senior Secondary (Class XII)</strong><br>
+                <span style="display: inline-flex; align-items: center; gap: 6px;">
+                    <i data-lucide="map-pin" class="icon"></i>
+                    <a href="https://stmarysudaipur.ac.in/" target="_blank" rel="noopener noreferrer">St. Mary's Convent Sr. Sec. School, Udaipur</a>
+                </span><br>
+                 <span class="graduation-year">Graduated 2020</span>
+            </p>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+            <div class="experience-entry">
+                <div class="experience-company">FamApp</div>
+                <div class="experience-role">Visual Designer, Branding</div>
+                <div class="experience-duration">Dec 2026 – Present</div>
+                <ul>
+                    <li>Worked with product team to execute new flows and features with visual integration</li>
+                    <li>Streamlined Visual brand book through extensive research of the expanded user base by conducting interviews and intensive prototyping .</li>
+                </ul>
+            </div>
+<div class="experience-entry">
+                <div class="experience-company">Zomato</div>
+                <div class="experience-role">Visual Designer, Marketing</div>
+                <div class="experience-duration">Sep 2024 – Oct 2025</div>
+                <ul>
+                    <li>Developed and executed visual design language for marketing media and product campaigns across platform.</li>
+                    <li>Collaborated with marketing teams to create engaging content that aligns with brand guidelines.</li>
+                </ul>
+            </div>
+            <div class="experience-entry">
+                <div class="experience-company">Plankton Collective</div>
+                <div class="experience-role">Animator</div>
+                <div class="experience-duration">Mar 2024 – Oct 2024</div>
+                 <ul>
+                    <li>Created character animations, color keys and motion graphics for diverse projects.</li>
+                    <li>Contributed to storyboarding, background illustrations and visual development processes.</li>
+                </ul>
+            </div>
+             <div class="experience-entry">
+                <div class="experience-company">Hachette / Niyogi Books / Speaking Tiger</div>
+                <div class="experience-role">Illustrated children's books and covers</div>
+                <ul>
+                    <li>Created illustrations for children's books, bringing stories to life through visuals.</li>
+                    <li>Designed book covers that capture the essence of the narratives.</li>
+                </ul>
+            </div>
+            <div class="experience-entry">
+                <div class="experience-company">Post Office Studios (for Netflix)</div>
+                <div class="experience-role">Key frame visual development artist</div>
+                 <ul>
+                    <li>Contributed key frame illustrations and visual concepts for animation projects.</li>
+                    <li>Collaborated with the art and animation teams to define visual styles.</li>
+                </ul>
+            </div>
+             <div class="experience-entry">
+                <div class="experience-company">Scopely</div>
+                <div class="experience-role">Illustrator Intern</div>
+                <div class="experience-duration">Oct 2023 – Dec 2023</div>
+                <ul>
+                    <li>Contributed to the creation of game assets and character illustrations.</li>
+                    <li>Worked with the art team to maintain visual consistency and quality.</li>
+                </ul>
+            </div>
+             <div class="experience-entry">
+                <div class="experience-company">Samsung India</div>
+                <div class="experience-role">UI/UX Design Intern</div>
+                <div class="experience-duration">Aug 2023 – Dec 2023</div>
+                <ul>
+                    <li>Assisted in the design of user interfaces and user experiences for mobile applications.</li>
+                    <li>Conducted user research and usability testing to inform design decisions.</li>
+                    <li>Designed and prototyped user interfaces for various applications.</li>
+                </ul>
+            </div>
+             <div class="experience-entry">
+                <div class="experience-company">Plankton Collective</div>
+                <div class="experience-role">Animator Intern</div>
+                <div class="experience-duration">Jul 2023 – Sep 2023</div>
+                <ul>
+                    <li>Supported senior animators in the production of animated content.</li>
+                    <li>Gained experience in various animation techniques and software.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <div class="skills-section">
+                <div class="contact-item">
+                    <i data-lucide="film" class="icon"></i>
+                    <a href="https://tvpaint.com/en/portfolio" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 4px;">
+                        TVPaint
+                        <span style="font-size: 0.7rem; color: #888;">Featured</span>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="pen-tool" class="icon"></i>
+                    <a href="https://www.instagram.com/p/DFc9y3EsWXx/?igsh=ZjJkOWNscW93c2ph" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 4px;">
+                        Procreate
+                        <span style="font-size: 0.7rem; color: #888;">Featured</span>
+                    </a>
+                </div>
+                <div class="contact-item"><i data-lucide="layers" class="icon"></i> Adobe Creative Suite</div>
+                <div class="contact-item"><i data-lucide="video" class="icon"></i> Toon Boom Harmony</div>
+                <div class="contact-item"><i data-lucide="layout-dashboard" class="icon"></i> Rive & Figma</div>
+                <div class="contact-item"><i data-lucide="video" class="icon"></i> DaVinci Resolve</div>
+            </div>
+        </section>
+
+        <section class="accomplishments-section">
+            <h2>Accomplishments</h2>
+            <ul>
+                <li>Winner - State Level Essay Writing | United Nations Information Centre</li>
+                <li>Panel’s Choice Winner - Dainik Bhaskar Junior Editor II & III</li>
+                <li>Winner - 94.3 My FM’s Painting Competition Rangrezz</li>
+                <li>First Runner-up - State Level Drawing Competition | Max Life & Axis Bank</li>
+                <li>Jamna Devi Chugh Memorial Award - Artist of the Year | St. Mary’s</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Interests</h2>
+            <div class="interests-section">
+                <div class="interest-item">
+                    <span aria-hidden="true" style="margin-right: 6px;">✍️</span>
+                    <span>Writing</span>
+                </div>
+                <div class="interest-item">
+                    <span aria-hidden="true" style="margin-right: 6px;">🖋️</span>
+                    <span>Poetry</span>
+                </div>
+                <div class="interest-item">
+                    <span aria-hidden="true" style="margin-right: 6px;">🏊‍♀️</span>
+                    <span>Swimming</span>
+                </div>
+                <div class="interest-item">
+                    <span aria-hidden="true" style="margin-right: 6px;">🏸</span>
+                    <span>Badminton</span>
+                </div>
+                <div class="interest-item">
+                    <span aria-hidden="true" style="margin-right: 6px;">⛸️</span>
+                    <span>Skating</span>
+                </div>
+                 <div class="interest-item">
+                    <span aria-hidden="true" style="margin-right: 6px;">📸</span>
+                    <span>Photography</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <script>
+        // Wait for the window to load completely before running scripts
+        window.addEventListener("load", () => {
+            // --- DOM Element References ---
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const body = document.body;
+            const container = document.querySelector('.container');
+            const downloadButton = document.getElementById('download-btn');
+            const themeText = document.getElementById('theme-text');
+            const themeIcon = document.getElementById('theme-icon');
+            const phoneNumberContainer = document.getElementById('phone-number-container');
+            const phoneLink = document.getElementById('phone-link');
+            const languagesItem = document.getElementById('languages-item'); // Get the languages item
+            const localTimeDisplay = document.getElementById('local-time-display'); // Get the time display element
+            const topLeftControls = document.querySelector('.top-left-controls'); // Get the top-left container
+            const graduationYears = document.querySelectorAll('.graduation-year'); // Get the graduation year elements
+            const interestItems = document.querySelectorAll('.interest-item'); // Get all interest items
+            const backgroundImage = document.getElementById('background-image'); // Get the background image element
+            const backgroundContainer = document.getElementById('background-container'); // Get the background container element
+
+            // Image URLs for light and dark modes
+            const lightModeImageUrl = "https://static.wixstatic.com/media/9ba0fd_69c4253c16cd49fea718d234fbf98e47~mv2.png";
+            const darkModeImageUrl = "https://static.wixstatic.com/media/9ba0fd_4f4ec4176ad5472d965844aadcb85100~mv2.png";
+
+            // Petal colors for light and dark modes
+            const lightModePetalColor = "#ffda3e"; // Sunflower yellow
+            const darkModePetalColor = "#d9531e"; // Darker orangish-red
+
+
+            // Select all elements that need class toggling for dark mode
+            const elementsToToggle = [
+                body, container, downloadButton, darkModeToggle, languagesItem, localTimeDisplay, topLeftControls, backgroundContainer, backgroundImage,
+                ...document.querySelectorAll('h1'),
+                ...document.querySelectorAll('.subtext'),
+                ...document.querySelectorAll('.contact-combo'),
+                ...document.querySelectorAll('.contact-item'), // Include all contact items
+                ...document.querySelectorAll('.bullet'),
+                ...document.querySelectorAll('p'),
+                ...document.querySelectorAll('h2'),
+                ...document.querySelectorAll('li'),
+                ...document.querySelectorAll('.experience-company'),
+                ...document.querySelectorAll('.experience-role'),
+                ...document.querySelectorAll('.experience-duration'),
+                ...document.querySelectorAll('a'), // Include all links
+                ...graduationYears, // Added graduation years
+                ...interestItems // Added interest items
+            ];
+
+            // --- Dark Mode Logic ---
+
+            // Function to apply dark mode styles
+            function enableDarkMode() {
+                localStorage.setItem('dark-mode', 'enabled');
+                elementsToToggle.forEach(el => el.classList.add('dark-mode'));
+                themeText.textContent = 'Dark Mode'; // Update text for accessibility
+                themeIcon.setAttribute('data-lucide', 'moon'); // Change icon to moon
+                lucide.createIcons(); // Re-render lucide icons
+                // Change background image for dark mode
+                if (backgroundImage) {
+                    backgroundImage.src = darkModeImageUrl;
+                }
+                // Change petal color for dark mode
+                document.querySelectorAll('.petal').forEach(petal => {
+                    petal.style.backgroundColor = darkModePetalColor;
+                });
+            }
+
+            // Function to remove dark mode styles
+            function disableDarkMode() {
+                localStorage.setItem('dark-mode', 'disabled');
+                elementsToToggle.forEach(el => el.classList.remove('dark-mode'));
+                themeText.textContent = 'Light Mode'; // Update text for accessibility
+                themeIcon.setAttribute('data-lucide', 'sun'); // Change icon to sun
+                lucide.createIcons(); // Re-render lucide icons
+                 // Change background image back for light mode
+                if (backgroundImage) {
+                    backgroundImage.src = lightModeImageUrl;
+                }
+                 // Change petal color back for light mode
+                 document.querySelectorAll('.petal').forEach(petal => {
+                    petal.style.backgroundColor = lightModePetalColor;
+                });
+            }
+
+            // Check local storage on load and apply theme
+            if (localStorage.getItem('dark-mode') === 'enabled') {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+
+            // Add click listener to the toggle button
+            darkModeToggle.addEventListener('click', () => {
+                if (localStorage.getItem('dark-mode') === 'enabled') {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+
+
+            // --- PDF Download Logic ---
+            document.getElementById("download-btn").addEventListener("click", () => {
+                const element = document.getElementById("resume-content"); // Element to convert to PDF
+                const opt = {
+                    margin:       0.5, // Margin in inches
+                    filename:     'Mehnaaz_Husain_Resume.pdf', // Output filename
+                    image:        { type: 'jpeg', quality: 0.98 }, // Image quality
+                    html2canvas:  { scale: 2, useCORS: true }, // html2canvas options
+                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' } // jsPDF options
+                };
+                // Generate and save the PDF
+                html2pdf().set(opt).from(element).save();
+            });
+
+            // --- Dynamic Phone Number Country Code ---
+            // Attempts to fetch user's country code based on IP and update the phone number display and link.
+            // This relies on an external API and may not always be accurate or available.
+            function getUserCountryCode() {
+                return fetch('https://ipapi.co/json/')
+                    .then(response => {
+                        if (!response.ok) {
+                            // Log error if API call fails
+                            console.error('Failed to fetch IP data, status:', response.status);
+                            throw new Error('Failed to fetch IP data');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data && data.country_calling_code) {
+                            return data.country_calling_code; // Return fetched country code
+                        } else {
+                            // Log warning if country code is not in data
+                            console.warn('Country calling code not found in IP data:', data);
+                            return '+91'; // Default to +91 if not found
+                        }
+                    })
+                    .catch(error => {
+                        // Log error and return default on any fetch/processing error
+                        console.error('Error fetching or processing IP data:', error);
+                        return '+91'; // Default to +91 on error
+                    });
+            }
+
+            // Call the function and update the phone number elements
+            getUserCountryCode().then(countryCode => {
+                const basePhoneNumber = '9461153073';
+                // Format the phone number for display (e.g., +91 9461 153 073)
+                const formattedNumber = `${countryCode} ${basePhoneNumber.slice(0, 4)} ${basePhoneNumber.slice(4, 7)} ${basePhoneNumber.slice(7)}`;
+                // Format the phone number for the tel: link (e.g., tel:+919461153073)
+                const telLinkNumber = `${countryCode}${basePhoneNumber}`;
+
+                // Update the DOM elements
+                if (phoneNumberContainer) { phoneNumberContainer.textContent = formattedNumber; }
+                if (phoneLink) { phoneLink.href = `tel:${telLinkNumber}`; }
+            });
+
+            // --- Local Time and Date Display Logic ---
+
+            // Function to update the time and date display
+            function updateLocalTime() {
+                const now = new Date();
+
+                // Options for date formatting (e.g., "6 May 2025")
+                const dateOptions = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                const formattedDate = now.toLocaleDateString(undefined, dateOptions);
+
+                // Options for time formatting (e.g., "8:37 AM")
+                const timeOptions = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true // Use 12-hour format with AM/PM
+                };
+                 // Use toLocaleTimeString for just the time part
+                const formattedTime = now.toLocaleTimeString(undefined, timeOptions);
+
+
+                if (localTimeDisplay) {
+                    // Combine date and time with a bullet point separator
+                    localTimeDisplay.textContent = `${formattedDate} \u2022 ${formattedTime}`; // \u2022 is the Unicode for a bullet point
+                }
+            }
+
+            // Update the time immediately on load
+            updateLocalTime();
+
+            // Update the time every second
+            setInterval(updateLocalTime, 1000);
+
+            // --- Cursor Petal Trail Logic ---
+            const petalContainer = document.createElement('div'); // Create a container for petals
+            petalContainer.style.position = 'fixed'; // Fixed position to cover the viewport
+            petalContainer.style.top = '0';
+            petalContainer.style.left = '0';
+            petalContainer.style.width = '100%';
+            petalContainer.style.height = '100%';
+            petalContainer.style.pointerEvents = 'none'; // Allow interactions with elements below
+            petalContainer.style.zIndex = 999; // Ensure it's above the background but below fixed elements
+            document.body.appendChild(petalContainer); // Add container to the body
+
+            let lastPetalTime = 0;
+            let lastPetalX = -1; // Store last petal X position
+            let lastPetalY = -1; // Store last petal Y position
+            const petalInterval = 100; // Increased interval for fewer petals (was 80)
+            const distanceThreshold = 15; // Minimum distance cursor must move to drop a petal
+
+            document.addEventListener('mousemove', (e) => {
+                const currentTime = Date.now();
+                const currentX = e.clientX;
+                const currentY = e.clientY;
+
+                // Calculate distance moved since last petal
+                const distanceMoved = Math.sqrt(
+                    Math.pow(currentX - lastPetalX, 2) + Math.pow(currentY - lastPetalY, 2)
+                );
+
+                // Create a petal only if enough time has passed AND cursor has moved enough
+                if (currentTime - lastPetalTime > petalInterval && distanceMoved > distanceThreshold) {
+                    lastPetalTime = currentTime;
+                    lastPetalX = currentX; // Update last petal position
+                    lastPetalY = currentY;
+
+                    const petal = document.createElement('div');
+                    petal.classList.add('petal');
+
+                    // Set petal color based on current dark mode state
+                    if (body.classList.contains('dark-mode')) {
+                        petal.style.backgroundColor = darkModePetalColor;
+                    } else {
+                        petal.style.backgroundColor = lightModePetalColor;
+                    }
+
+
+                    // Position the petal slightly above the cursor for a falling effect
+                    petal.style.left = `${currentX}px`;
+                    petal.style.top = `${currentY - 10}px`; // Start slightly above the cursor
+
+                    // Random size variation (between 5px and 10px)
+                    const randomSize = Math.random() * 5 + 5; // Size between 5 and 10
+                    petal.style.width = `${randomSize}px`;
+                    petal.style.height = `${randomSize}px`;
+
+                    // Generate a random initial rotation (0 to 360 degrees)
+                    const initialRotation = Math.random() * 360;
+                     // Apply initial rotation directly
+                    petal.style.transform = `rotate(${initialRotation}deg)`;
+
+
+                    // Generate a random final rotation for the animation (e.g., -720 to 720 degrees for multiple turns)
+                    const finalRotation = (Math.random() - 0.5) * 1440; // Random value between -720 and 720
+
+                    // Set the CSS variable for the final rotation
+                    petal.style.setProperty('--final-rotation', `${finalRotation}deg`);
+
+                    petalContainer.appendChild(petal); // Add the petal to the container
+
+                    // Remove the petal after the animation finishes
+                    petal.addEventListener('animationend', () => {
+                        petal.remove();
+                    });
+                }
+            });
+
+
+            // Initial rendering of Lucide icons on page load
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
+
