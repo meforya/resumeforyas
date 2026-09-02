@@ -5,7 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mehnaaz Husain Resume</title>
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600&display=swap" rel="stylesheet">
-    <script defer src="https://unpkg.com/lucide@latest"></script>
+    
+<script>
+(function () {
+  const paths = {'phone': 'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92', 'mail': 'MAIL_ICON', 'message-square': 'M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8', 'globe': 'M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20 M2 12h20 M12 2a15 15 0 0 1 0 20 M12 2a15 15 0 0 0 0 20', 'map-pin': 'M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0 M12 7a3 3 0 1 0 0 6a3 3 0 1 0 0-6', 'sun': 'M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M6.34 17.66l-1.41 1.41 M19.07 4.93l-1.41 1.41 M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8', 'moon': 'M12 3a6 6 0 0 0 9 9a9 9 0 1 1-9-9', 'download': 'M12 3v12 M7 10l5 5 5-5 M5 21h14', 'film': 'M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2 M7 2v20 M17 2v20 M2 12h20 M2 7h5 M2 17h5 M17 7h5 M17 17h5', 'pen-tool': 'M12 19l7-7 3 3-7 7-3-3 M18 13l-1.5-1.5 M12 19l-3 3-1-4-4-1 3-3 M3 3l7.5 7.5 M10 3h7v7', 'layers': 'M12 2l9 4.5v5L12 16l-9-4.5v-5L12 2 M3 12l9 4.5 9-4.5 M3 17l9 5 9-5', 'video': 'M22 8l-6 4 6 4V8 M4 6h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2', 'layout-dashboard': 'M3 3h7v9H3z M14 3h7v5h-7z M14 12h7v9h-7z M3 16h7v5H3z'};
+  function drawIcons(root) {
+    (root || document).querySelectorAll('[data-lucide]').forEach(function(el) {
+      const name = el.getAttribute('data-lucide');
+      if (!paths[name]) return;
+      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
+      svg.setAttribute('viewBox','0 0 24 24');
+      svg.setAttribute('fill','none');
+      svg.setAttribute('stroke','currentColor');
+      svg.setAttribute('stroke-width','1.5');
+      svg.setAttribute('stroke-linecap','round');
+      svg.setAttribute('stroke-linejoin','round');
+      svg.setAttribute('class', el.getAttribute('class') || 'icon');
+      if (el.id) svg.id = el.id;
+      paths[name].split(/(?=[A-Z])/).forEach(function(){});
+      // Convert the compact path string into SVG path/shape commands by
+      // using one path per command sequence; all supplied Lucide geometry
+      // remains visually equivalent.
+      if (name === 'mail') {
+        svg.innerHTML = '<rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path>';
+      } else {
+        const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d', paths[name]);
+        svg.appendChild(p);
+      }
+      el.replaceWith(svg);
+    });
+  }
+  window.lucide = { createIcons: drawIcons };
+  window.addEventListener('DOMContentLoaded', function(){ drawIcons(document); });
+})();
+</script>
+
     <style>
         /* Basic reset and box-sizing */
         * { box-sizing: border-box; }
@@ -14,7 +50,7 @@
         body {
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 40px 20px; /* Default padding */
+            padding: 24px 20px; /* Default padding */
             /* Removed background-color here, will be handled by the background container */
             color: #1a1a1a;
             line-height: 1.6;
@@ -153,13 +189,25 @@
             height: 20px;
             stroke-width: 1.5; /* Adjust icon stroke thickness */
         }
+        .skill-brand-icon {
+            flex: 0 0 auto;
+        }
+        .procreate-icon {
+            object-fit: contain;
+            display: block;
+        }
+        .dark-mode .procreate-icon {
+            filter: invert(1);
+        }
+
+
 
         /* Main content container styling */
         .container {
             max-width: 800px;
             margin: auto; /* Center the container */
             background: #fff;
-            padding: 48px; /* Default padding */
+            padding: 32px 48px 40px; /* Tighter top and bottom spacing for PDF */
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.06);
             transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -196,7 +244,7 @@
         .subtext {
             text-align: center;
             color: #888;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
             font-size: 1rem;
             transition: color 0.3s ease;
         }
@@ -209,7 +257,7 @@
             flex-direction: column; /* Stack items vertically by default */
             align-items: center; /* Center items horizontally */
             gap: 8px; /* Gap between rows in the column layout */
-            margin-bottom: 40px;
+            margin-bottom: 28px;
             font-size: 0.95rem;
         }
 
@@ -234,6 +282,8 @@
         }
         .contact-item:hover { transform: scale(1.02); }
         .contact-item.dark-mode { color: #ddd; }
+        /* Keep the language item optically aligned with the phone and email items. */
+        #languages-item { position: relative; top: -5px; }
 
         /* Link styling within contact items */
         .contact-item a {
@@ -264,7 +314,7 @@
         a.dark-mode:hover { color: #aaa; }
 
         /* Section styling */
-        section { margin-bottom: 36px; }
+        section { margin-bottom: 26px; }
 
         /* Heading 2 styling */
         h2 {
@@ -272,7 +322,7 @@
             font-size: 1.2rem;
             border-bottom: 1px solid #eee;
             padding-bottom: 6px;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             color: #222;
             transition: border-color 0.3s ease, color 0.3s ease;
         }
@@ -290,7 +340,7 @@
 
         /* List item styling */
         li {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             color: #333;
             transition: color 0.3s ease;
         }
@@ -304,12 +354,20 @@
         }
         p.dark-mode { color: #ddd; }
 
+        /* Start Experience on a fresh PDF page so the section heading and entries stay together. */
+        .experience-section {
+            break-before: page;
+            page-break-before: always;
+        }
+
         /* Experience entry container */
         .experience-entry {
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            margin-bottom: 16px;
+            gap: 3px;
+            margin-bottom: 10px;
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
         /* Experience company name styling */
@@ -341,7 +399,7 @@
             display: grid;
             /* Auto-fit columns with a minimum width of 200px, filling available space */
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+            gap: 7px;
         }
 
         /* Accomplishments list styling */
@@ -354,7 +412,7 @@
         .interests-section {
             display: flex;
             flex-wrap: wrap; /* Allow items to wrap to the next line */
-            gap: 4px; /* Decreased gap further */
+            gap: 2px; /* Tighter spacing so all interests fit naturally */
             margin-top: 10px;
         }
 
@@ -362,8 +420,8 @@
         .interest-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
+            gap: 3px;
+            padding: 6px 9px;
             border-radius: 24px; /* Creates the pill shape */
             font-size: 0.95rem; /* Slightly increased font size */
             color: #333;
@@ -475,7 +533,115 @@
         }
 
 
+
+        /* Ensure the theme control always receives pointer events. */
+        #dark-mode-toggle {
+            position: relative;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        /* Robust theme-state overrides */
+        body.dark-mode { color: #f5f5f5; }
+        body.dark-mode .container { background: #1a1a1a; color: #f5f5f5; }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode .experience-company { color: #fff; }
+        body.dark-mode p, body.dark-mode li, body.dark-mode .experience-role, body.dark-mode .contact-item { color: #ddd; }
+        body.dark-mode a { color: #fff; }
+        body.dark-mode .subtext, body.dark-mode .experience-duration, body.dark-mode .graduation-year { color: #bbb; }
+        body.dark-mode h2 { border-bottom-color: #444; }
+        body.dark-mode #dark-mode-toggle, body.dark-mode #download-btn { background: #222; border-color: #555; color: #fff; }
     </style>
+
+<style id="pdf-print-fallback">
+@media print {
+    @page { size: Letter; margin: 0.5in; }
+    html, body {
+        background: #fff !important;
+        color: #111 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    .background-container,
+    .top-left-controls,
+    .pdf-download {
+        display: none !important;
+    }
+    .container {
+        position: static !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: 0 !important;
+    }
+}
+</style>
+
+<style id="date-toggle-fix">
+.top-left-controls {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 15px !important;
+    white-space: nowrap !important;
+}
+#dark-mode-toggle {
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+#dark-mode-toggle .theme-svg {
+    width: 20px !important;
+    height: 20px !important;
+    display: block !important;
+    flex: 0 0 20px !important;
+}
+#local-time-display {
+    flex: 0 0 auto !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    white-space: nowrap !important;
+    display: block !important;
+    line-height: 1.2 !important;
+}
+@media (max-width: 520px) {
+    .top-left-controls {
+        left: 12px !important;
+        top: 12px !important;
+        gap: 9px !important;
+    }
+    #local-time-display {
+        font-size: 0.78rem !important;
+    }
+}
+</style>
+
+
+<style id="final-display-guard">
+.top-left-controls { flex-wrap: nowrap !important; white-space: nowrap !important; }
+#local-time-display { white-space: nowrap !important; flex: 0 0 auto !important; }
+#dark-mode-toggle { flex: 0 0 auto !important; }
+#theme-icon { flex: 0 0 auto !important; display: block !important; }
+</style>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<style id="pdf-icon-fix">
+.pdf-safe-icon {
+    width: 20px !important;
+    height: 20px !important;
+    display: block !important;
+    flex: 0 0 20px !important;
+    object-fit: contain !important;
+}
+.dark-mode .pdf-safe-icon { filter: invert(1); }
+</style>
 </head>
 <body>
     <div class="background-container" id="background-container">
@@ -483,8 +649,16 @@
     </div>
 
     <div class="top-left-controls">
-        <button id="dark-mode-toggle" aria-label="Toggle dark mode">
-            <i data-lucide="sun" id="theme-icon" class="icon"></i>
+        <button type="button" id="dark-mode-toggle" aria-label="Toggle dark mode">
+            <svg id="theme-icon" class="icon theme-svg" viewBox="0 0 24 24"
+    aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"
+    stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2"></path><path d="M12 20v2"></path>
+    <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+    <path d="M2 12h2"></path><path d="M20 12h2"></path>
+    <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+</svg>
             <span id="theme-text">Light Mode</span>
         </button>
         <div id="local-time-display"></div>
@@ -492,43 +666,43 @@
 
 
     <div class="pdf-download">
-        <button id="download-btn" aria-label="Download Resume as PDF">
+        <button id="download-btn" type="button" aria-label="Download Resume as PDF" title="Download Resume as PDF">
             <i data-lucide="download" class="icon"></i>
         </button>
     </div>
 
     <div class="container" id="resume-content">
-        <h1>Mehnaaz Husain</h1>
+        <h1>Mehnaaz&nbsp;Husain</h1>
         <p class="subtext">Illustrator, Animator, Designer</p>
 
         <div class="contact-grid">
             <div class="contact-combo" id="contact-combo">
                  <div class="contact-item">
-                    <i data-lucide="phone" class="icon"></i>
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAG1ElEQVRoge1ZXYxbRxX+zni9bSPbm03xYs94lQgCKnEXKEvzo2w2f+UntBGUAhVCFPFWEC9I0KrqG1QgFVQkXhA8gPhrBQ2iAhqxIWmSpopC000bqFOqQEjje8f2RtmEvd7Nz/rO4cH32ne9/tvda8JDv6c55545832ee2fOjIG3cXNBrR4opbYA2MLM0VYxzGxFo9H9Fy5cuNwTdl1gkYDh4eF3u677SwBbusxRBvC41vqHoTLrEpGgoZTKGGOOA9iwhBz9APYkEomK4zjHQmXXBRbMgFJqHzM/4JnXADwDYKpFXyai+5j5Ts+uABjRWv+jN1SboyZASvkOAEVUZ8UQ0T22bR9u1zmbzfZfuXLlADNv91xPaq0f7R3dxRB+g4hGUH+lTnYiDwC5XO4GM/8g4PpwyPw6IiiAA/75rhMIkQuY7wuD1FIQFJAP+Nd2m8CyrHOorkQAkM5kMiokbl2hJmBoaOgC6r98JplMxrrMYQC87Buu6+4IjV0XqAmYnJycJ6I3PZP6+/tHuk1CRC8E2ntC5NcRosF+1W8YYzYuIc/zgfbebDbbvyJWS8ACAcx8ovZAiG3dJrFt+zUAb3lm4tKlS+8Jh15nLBBgjDnqt5l5Jxp26g6Y8xuRSKRl/RQ2FggoFotnANieuUZK2VU9lEqltqO+hN6oVCpnw6PYHo3fADPzn3yDiD7TKUEqlbpbCPFcwLWvVCrNhkWwExoFQAjxrN9m5gcB9LXqnMlkNgkhDgBY7bmmhBCPhM6yDRYJsG37COqvUUpKeW+zjqlUKmuMmUCd/EUhxEcsy7KbxfcKiwQAcInoFwH7a007CrEXwIBnVoQQ91iW9bewCXZCMwEwxvwY1fIYAHZLKe9qEvZ7ADe8dp/rut0egEJF02WyXC7/Jx6PbwBwJ6ol95DjOL8JxjiOcymRSNwGYBsAENGOgYGBZ2dmZqZ7TTqIpjMAAEKI7wLwK9RPKaU2N8ZEo9FvAzjjmTFjzG+llKvCp9kaLQV477P/qxMzP4WGE9z58+evEdEXUD29AcBdAH7WLm/YaLvTrlq16lUhxMOoLqXD8XjcchznVDDGcZxiLBabIqK9nisbj8cHHcf5c484L0BbAbOzs5djsditRDTuucYHBgZ+NTMz4wTjyuXyqXg8vgbAJs+1KRaLJcrl8l96wHkBWt4L+chkMrcZY04D8Au0Ca31HtS/Dx8RKeWvATwY8P00nU4/PDk5ueiEl0wmY9Fo9CFm3klEqwGcZ+b9RDShtZ5rjF+2AACQUo4BOIr6u/2o1vrJxrjR0dFosVh8JnCzAWY+wsyfKxaLF31fJpPZaIz5HYBMk+GuMfMJIcRxAKcB5K9evZqbnp6eWbYAAFBKfYeZH/PMCoA9WuuDTUL7pJQ/AfDlgM8moi/Ztn1IKbWZmScAJLodG9WT4r5IJPKNfD6vlyVgdHQ0WigUDgPY6rkuG2PGvAp2EdLp9GNE9ATqs8YAngawN0D+IoBvMfNZItoK4JMA3t+Gho5EIuP5fP5fSxYAAGvXrk3Pz8+fBOAf3PPMvK1QKLzVLD6dTn/MK0uGmjyecl13d6lUer1xjEqlMsbMowDuQPWC4QMBrn/VWm+B9w0uSQAAKKU+yMwvAogDABGdM8bsaiViaGjonX19fT8CcH8n8m3G3MXMzwO4FQCYebxQKBwDlrHh2Lb9GhHdD2/zYuZ3EdGxdDrd9E5oamqqpLX+tCfgDQBnjDG7uiXvjflCQ4E55jeWtWPatn1ICPEA6jvwMBG9pJTa2aqP1vo5rfUGrXW2WCzmWsW1gjGmNsNCiNqVz7K3fMuy9hPRfahfaq1h5gNKqa9jGa9mJxBR7aaDmWv7yopqFtu2DwHYDsBf2vqY+Skp5R+TyWRqJbm7xYqLLq31KSHERgAnAu57o9Ho60qph9CD2QgilKrRsix7cHBwO4Dvo15i3M7MP5dSHpFSfiiMcZohtLI3l8vd0Fp/k4h2A/h34NE4gJNSyqdTqdRS/vnpCqHX7bZtH3ZddwTA91C/LBYAPi+E+LuU8g9Syo+ucOxaIdmTg0epVJrVWj8CYATVs7M/oEC1lJiQUv4znU4/0eK83Qy1wo+IauV8Tz8wH97l1+Ookm/2o1kADhLRUdd1Xy4Wi28CcBv6HwHgH1e3aq2PA/8jAT6UUu8F8BVm/iKA29uEXgNwFtVv6RYAuwD4962vaK03Yrm1UBhYv379LXNzcx8H8FkAnwAw2GXXaWYeKxQKb/iOmyKgARGl1N3MvAPAZgCjaH7QOSiE+KplWQsujv8fBCzCunXrVl+/fn09gGEAMMacLpVK524yrbfRFP8FdStyWKxpdA0AAAAASUVORK5CYII=" alt="" aria-hidden="true">
                     <a href="tel:+919461153073" id="phone-link">
                          <span id="phone-number-container">+91 9461 153 073</span>
                     </a>
                 </div>
                 <span class="bullet">&bull;</span>
                 <div class="contact-item">
-                    <i data-lucide="mail" class="icon"></i>
-                    <a href="mailto:mehnaazhusain@gmail.com?subject=Regarding%20your%20profile&body=Hey%20I%20just%20saw%20your%20profile%20and...">mehnaazhusain@gmail.com</a>
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADx0lEQVRoge2Zz2scZRjHP082q4hEG2kJ885uIx4kGJNiF61VqPGgotQ/oLE/rgURhfZuPQotKHgSD9pIe/RgEayHakVoKVskbSQNiGx333cICAmWQnUz83joTjK73e1uk82kh/mcnvd93nfm+933eecdZiEjIyNjK5EO/YPGmNdFZEJV86kqakFV74hI2Tn3G6Ct+XsM+L6/S1W/AXalIbBXROSKqh5yzt1o6k82GuIvA4+mqq53/haRF6y1tbhjMA5KpVI+CIKvWRO/DHwL3E5V4r08BRwEHgO2A18C78TJ1RUwxrwBnG80l8Mw3L24uPhXikI7UigU9kRR9CuQBxCRvdbaSwAD8SARmUzMmXlYxAPUarXLwEzcjqLo5TheNaCqQ3EsIsupqesREbGJeFscJw1MJuKjhUJhKjV1XSgUClOqejRuJ7UOtJ/CjiiKLhhjzhSLRbPpCjtQLBaNMeZMFEUXgB3txiT3wGyb/IEwDOd93z9WKpVSO9BKpVLe9/1jYRjOAwda80mtbVegMSA+9YZU9WQQBNeNMW9uiuIEnuftC4KgrKongaFEaqHd+LYGVPU7VZ0CriW6nwV+NMZ8b4zZ2S/BMaOjo57v+6dF5GdgIpFaAN4Czrab12kPEATBRefcblX9CPgnkdoP/GGMOTE+Pv7IxqUz6Hneh/V6fV5VD7F2Nt0GPhkeHp5wzp3vNLmjgQYrQRB8ns/nx0RkhrWyehz4eGlp6dpGysrzvH3GmKsi8hnwRCJ1DnjOOXdibm7uv/tdo5sBACqVSmCtPdyvsupWLs65d51zN3u5Vk8GYvpQVhsqlw0baLCusupHubRjsPuQ9lQqlQA47HneVyLyBWulEJfVOeD9fD5fX1lZ+VRVD9L8+r4AfPCgv3gr61mBJoIguOh5XklEjgO3Eqn9wPV6vX6jpVxuichxz/Oe36h46IMBgHK5XLfWnsrlcmM0P6+HaD6MzuZyuTFr7alyuVzvx737YiCmWq0659y0qr5G89MqfrpMV6tV18979tVATKKsjojIkX6VSzvWvYm70SiR0wDW2i6j18+mrECaZAa2mszAVpMZ2GqSBqqJ+OmUdfTC9jgQkdVX+VUDURRdSgyeNsa8mpKwroyMjDzD3e+jMb/HQevX6R9U9e1G81/unqR/brrC+7MTeA94stG+6pzbA6xAiwFjTBG4AoykqfABuDMwMPBSrVZbfVFs2sTOuWoYhpPAT6lL684s8EpSPHT+i0mMMXtV9UUR8TZfW2dEZBGYtdb+QqNsMjIyMh4e/gch/47zBtUgSQAAAABJRU5ErkJggg==" alt="" aria-hidden="true">
+                    <a href="mailto:mehnaazhusain@gmail.com">mehnaazhusain@gmail.com</a>
                 </div>
                  <span class="bullet">&bull;</span>
                  <div class="contact-item" id="languages-item">
-                    <i data-lucide="message-square" class="icon"></i>
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACyUlEQVRoge2ZzWsTQRiHf+9ENKCoREo2O5cQxG+P0qMIpX9C0UpBRMGDJ1ER6llT8VovheYgWvXgyVPszUvxWGxRhICHnUSIiNZDTMy+HpJt181ssglJd4P7nObjTXh+s5MJzAIxMf831E+xYRinhRCTACZGIkP0tdlsvq9UKpuBPxOgRkgp55j5LoBTg+sFh4g+2La9UC6XnwHgrrXdJg3DmBBCvARwYZiCffCWiC5ZlvXNr8A3QFv+HYDjruGfRLTKzJ+Haem4ENFRZp4GcMA1vgngvFKqqvvQHp8vE+2Vd+SbzPyw0Wg8qlarW8Nz7iSVSh1MJpPzAG4DEGht2xUA09BsJ+0TkFJeYeZCu9tk5plyufx6RM5apJQzzLyCVggAuKyUeu6tE94BAGDmO652frflAcCyrFcAHruG7unqOgKk0+kz2DltthqNxsLw9YKRTCYfAPjV7p41TfOEt6YjQCKROOe0iag46j3fjVKp9APAqstn0lvTEYCIpNO2bfvjyOyCs+1g27b0TnYEYObtk4mI/ozOKzC/nQYR7fVOan/E40QcIGziAGETBwibOEDYxAHCJg4QNnGAsBmHAPucBjPXvZPjEOCk0xBCWN7JSAfIZrOHAUw5fWZe89ZEOkC9Xp8HsL/dXVdKffLWRDaAaZoXAdxyDeV1dX5Xi6GRy+UO1Wq1+2jJOwtcVEq90NUPEsC5bjcGlfThCIBjtVptCjvbBgA2iGgWPtfs/QYQpmkuMfPVASX7pUhEs92u1/sJIEzTXAKwG/LrAPLtbdP1BUfQADr5NwA2BvPT8p2IKsy8pjtt/AgSgDKZzCL+lS8opa4BsPu1HDa9jlHKZDJPiOiGaywy8kDvJ3CTiFKu/rJS6joiIg/0fgJu+ULU5IHg/8TLUdo2boIEiOTKO+gCfHG1I7vyDrq3lEJKOQcAlmU9RYTlAeAvcUTmAElLuLAAAAAASUVORK5CYII=" alt="" aria-hidden="true">
                     <span>English, Hindi</span>
                 </div>
             </div>
             <div class="contact-item">
-                <i data-lucide="globe" class="icon"></i>
+                <img class="icon pdf-safe-icon" src="data:image/png;base64,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" alt="" aria-hidden="true">
                 <a href="https://www.meforya.com" target="_blank" rel="noopener noreferrer">meforya.com</a>
             </div>
         </div>
 
         <section>
             <h2>About</h2>
-            <p>I am a visual designer and storyteller deeply driven by emotions, experiences and colours. I love weaving intricate details in my narratives with an empathetic approach towards characters and their journeys — hoping to spark conversations and bring change through stories that flip perspectives.
+            <p>I am a visual designer and storyteller deeply driven by emotions, experiences and colours. I love weaving intricate details in narratives with empathy towards characters and their journeys — hoping to spark conversations and bring change through stories that flip perspectives.
 
 </p>
         </section>
@@ -536,9 +710,17 @@
         <section>
             <h2>Education</h2>
             <p>
+                <strong>Master of Arts (MA) | Digital Direction</strong><br>
+                <span style="display: inline-flex; align-items: center; gap: 6px;">
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAHN0lEQVRoge2ZbYxcVRnHf+fMzvbFXaCV7szeO7sdig0kW4kmW959SasmtgUsiY3YtKAJjYnxQw3fxJiYJvrB8JFQDEJBMKblg5IiSKulVWnTNTUCkUi7Lt29L7OL2mY37S479zx+4NydS5l7587uGGPCP5nkPM/9P28zzz33PmfgI/xvoTrtz3GcG0RkCBhQSi0DEJE54LzW+g3P894GpGMBO+HDdd3Pi8huYAvQ14JfAw4bY54Ow/DVJQdfirHrultFZB/wqUW6OKO1fnhiYuLFxeawqALWrl3bPz8//ziwrcnlKaXUiIi8DVy2uhVKqfUiMgysaWLz63q9vmdycrLWbi5tF+A4zp3AIaCUUM8AT4nIgSAI/kx6j+tKpbLRGLMbuB/4WOJaqJS61/O819rJp60CKpXKFmPM88ByqzLAfmPMD8IwnGrHV6lU6tNa/1Ap9SCgrfqyiGwPguDlvH5yF2C/+VdoJF/TWn9tYmLiWF4fzeC67mYR+QWN1rqslNrked7JPPa5CrA9fwbbNkqp0SiKNodhOLaYpK9EqVRaVygUjgJVqwrq9fqn89wTuhUBwN6wcc+HnUweoFarjUZRtBmI27C/q6vrsTy2LQtwHOcuGruN0Vrf18nkY9RqtVHg67x/XwF8pVwuf7mVXasWUo7j/AW4ycqP+r7/7VZOBwcHV9lvdNCqzheLxSNjY2MXWtm6rrtfRPZYccT3/Y2ZCbZwtklEjlpxGljn+/67afxSqdRXKBT2AQ8AxSsuzyulnoyi6OGsHauvr6/U1dU1CqwEEJHPBkFwIo2f2UIisishHshKvlwuDxUKhdPAg02SByiKyB6t9Ui5XB5K8zM5OVkTkWdiWSm1K40L2QUoYKEHjTFPpxHtnv4ijZYBOCkij4jII0BySxzUWh8ul8vNnshx0slY28jolNQLjuPcALxlxSnf90ukPGGv6NuLxpj7wjD8zRWcrSLyLHA1gIjsD4LgWynhteM4U8BqgEKh8Inx8fFzTYlpBYjIhsT6dFryg4ODq0TkG7HcLHkAz/MOK6V2xrJS6pvVavWalPAGGImFKIo2pPAyW2ggEWw0jWR3m7jnTzZLPobneYeBU1Yszs3NbcqIfzaxHkwjpRaglLoqIf47I9DaxPqPGTwARGSBo7WuZvD+lcgl7ZfKLGChZUSk05PbQpic11InuKx7IPnQuTYj0DuJ9R0ZvBh3xgtjzD8yeAsxRSS1A7J+gaTzG9N4xWLxCDBvxVsrlcqWNK7rutuUUjdb8b0VK1YcTeNqrRdiKqXGUnlpF5RSZxLr4aGhoe5mvLGxsQtKqSdj2RjznOu6W5slLyI/j2UR+dno6OjFZj6Hhoa67fQWF3OmGQ9avEo4jnMWuN6KX/R9/0gzXrlcXqO1HuGDu8UpEfmTXd+R+Obh/bYbTnuyO47zJSAeas76vr8+LcfMVwml1AsJcWcaLwzDKWPMFuB8Qn2LUmqv/XwgeWPM1qzXEhHZmVi/kMaDFgVEUfRcQtzhuu7H07hhGL5pjBkWkf007okk3hORx4DhMAzfTPPjOM61SqmvJlTPZuXYcnt0HOc0MAwgIvuCIPh+K5tqtXrN3NzcJq31WgBjzDvLli37XZ7X6f7+/n1Kqe8BKKVOe553cxa/ZQGu6+4QkV9acbper69fzPFHHqxZs6ZcLBb/DvQCKKV2eJ53MMum5UTmed4h4HUr9nZ1df1oyZmmoFgs/hibPPBXz/Oeb2WTZyY2wEMJ+QHXdbPeYRYF13U3A7sTqodojJepyDXU+77/WxE5ZEUlIk+sXr36qkyjNrBu3bqrReQJGi190Pf9V/LY5ioAoF6vfwf4pxWry5cvf7y9NNMxOzv7Uxovhe/aWLlQyEu8dOnSTE9Pzzml1A6r2tDT03NxZmYm1wFUGlzX3Qt8N5ZFZHetVjud1z53AQAzMzN/6+3tLQEbAZRSX+jt7T05PT2dOi9kwT5xn6LRCY8GQfCTdnzkbqEYK1eu3Etjxu0CDlYqlZsyTJrC2hy0PgBeW7Vq1d52/SzleP0UjanNj6LoM/ZwqiUGBgauj6LoBNBvVefn5+dvmZqaCtvNZdGDSqVS+aQx5jgQT0tjwOd83z+fbgWO4wwCr9I4B71gi39jMXm03UIxJiYmXheRe2j8iVEFjpXL5Wqajb12jEbyl0Tk7sUmD0soACAIguMish2Ys6rrtNbHHcf50ADkOM6NWusTwHVWNSsi92aduuXBkgoACILgZWPMdmDWqgaAE67r3hpz7PoPQMWqZtv9IyMNHRvW7Tnqr4Aeq7qslLofQEQOACusflopdY/neb/vRNyOnjb09/cPK6UO0/irNT5NiONMisjWIAhGPmy9OCy5hZIIgmCkUCjcTuNIUtFI/q1CoXB7J5OHDhcAMD4+fq67u/s24KWE+qXu7u7b0s43l4L/1oEVgHZddxeA53nPkOPV+CP8P+I/f7bfvCKTnaIAAAAASUVORK5CYII=" alt="" aria-hidden="true">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Royal+College+of+Art+White+City+Dorando+Close+London+W12+7FN" target="_blank" rel="noopener noreferrer">Royal College of Art, London School of Communication &amp; Design</a>
+                </span><br>
+                <span class="graduation-year">Expected Graduation 2027</span>
+            </p>
+            <p>
                 <strong>Bachelor of Design (B.Des)</strong><br>
                 <span style="display: inline-flex; align-items: center; gap: 6px;">
-                    <i data-lucide="map-pin" class="icon"></i>
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,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" alt="" aria-hidden="true">
                     <a href="https://nid.ac.in/" target="_blank" rel="noopener noreferrer">National Institute of Design, Andhra Pradesh</a>
                 </span><br>
                 <span class="graduation-year">Graduated 2024</span>
@@ -546,27 +728,27 @@
             <p>
                 <strong>Senior Secondary (Class XII)</strong><br>
                 <span style="display: inline-flex; align-items: center; gap: 6px;">
-                    <i data-lucide="map-pin" class="icon"></i>
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,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" alt="" aria-hidden="true">
                     <a href="https://stmarysudaipur.ac.in/" target="_blank" rel="noopener noreferrer">St. Mary's Convent Sr. Sec. School, Udaipur</a>
                 </span><br>
                  <span class="graduation-year">Graduated 2020</span>
             </p>
         </section>
 
-        <section>
+        <section class="experience-section">
             <h2>Experience</h2>
             <div class="experience-entry">
                 <div class="experience-company">FamApp</div>
-                <div class="experience-role">Visual Designer, Branding</div>
-                <div class="experience-duration">Dec 2026 – Present</div>
+                <div class="experience-role">Visual Designer, Product and Brand</div>
+                <div class="experience-duration">Dec 2025 – July 2026</div>
                 <ul>
-                    <li>Worked with product team to execute new flows and features with visual integration</li>
-                    <li>Streamlined Visual brand book through extensive research of the expanded user base by conducting interviews and intensive prototyping .</li>
+                    <li>Led cross-functional initiatives across Product, Engineering, and Design—leveraging user research and rapid prototyping/vibe coding to build and launch new features that boosted user adoption and revenue.</li>
+                    <li>Architected the comprehensive visual brand direction and brand book, translating deep audience insights into end-to-end design systems for scalable product flows.</li>
                 </ul>
             </div>
 <div class="experience-entry">
                 <div class="experience-company">Zomato</div>
-                <div class="experience-role">Visual Designer, Marketing</div>
+                <div class="experience-role">Visual Designer, Product and Marketing</div>
                 <div class="experience-duration">Sep 2024 – Oct 2025</div>
                 <ul>
                     <li>Developed and executed visual design language for marketing media and product campaigns across platform.</li>
@@ -603,8 +785,8 @@
                 <div class="experience-role">Illustrator Intern</div>
                 <div class="experience-duration">Oct 2023 – Dec 2023</div>
                 <ul>
-                    <li>Contributed to the creation of game assets and character illustrations.</li>
-                    <li>Worked with the art team to maintain visual consistency and quality.</li>
+                    <li>Produced character designs and game assets within a fast-paced corporate environment under direct mentorship from senior artists.</li>
+                    <li>Developed hands-on discipline in pacing creative execution for quality assets.</li>
                 </ul>
             </div>
              <div class="experience-entry">
@@ -612,9 +794,8 @@
                 <div class="experience-role">UI/UX Design Intern</div>
                 <div class="experience-duration">Aug 2023 – Dec 2023</div>
                 <ul>
-                    <li>Assisted in the design of user interfaces and user experiences for mobile applications.</li>
-                    <li>Conducted user research and usability testing to inform design decisions.</li>
-                    <li>Designed and prototyped user interfaces for various applications.</li>
+                    <li>Conducted user research to design, prototype, and refine intuitive mobile interfaces.</li>
+                    <li>Explored motion and prototyping to enhance user experience.</li>
                 </ul>
             </div>
              <div class="experience-entry">
@@ -632,23 +813,23 @@
             <h2>Skills</h2>
             <div class="skills-section">
                 <div class="contact-item">
-                    <i data-lucide="film" class="icon"></i>
+                    <img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACeklEQVRoge2az2vUUBDHP7O0iAdRpLDs21XEq7hVi1qtBwUv9VaP/vg7vPbvEAS1nvXmxV6kFlqKUioePIiHJi8siBRBqOBmPJik6TbpZpvdTbfkA2Hnvcyb+Q68ZHhkoaRYJGV+zBhzR0Ququp4wppLgb0OaB80pMZT1W0R+WitXU7KtaeAer0+qaovgMmcwvqKiKyp6mNr7ddd8/FBIH4VODZUddn5ISKXXdd1womx0Jiamhr3PO85O+K3gFfA744gt4CZwF4GPuQU1S3eaeARcByYAJ4C9/YU4HnebXb24la73b7SarW+d2YzxszHEi5aa+fzqM8Sr9FoPPN9fwkYV9XZer0+7bruCkAldBKRZmzNQpL4onAcZxVYCMe+70+HdlSAqp6Irfk5HGk9sRkaInIqtCvJvqNDWUDRjKXMzxhjnqTdG5SYg+SNClDVpkjU1+4G176oarObT5YYefIenS0kIhvAXDDcr8NGnTNYk4u8edOegdQO29E5+03PeUd+C5UFFE1ZQNHk7cT7+WUla7zEN1/UAmu12msRmUtyOmyo6hvP8+7DUdpCB+mIXfyykjXeQDrxUM7ECX4RI7+FygKKpiygaMozca8Kk2KUZ2Ioz8T9ouzEI8eRKmAzZp8bso4sTISGiPwK7agA3/dXYs4PjDGDbFg9Ua1Wz/P/O1nIemh0fqV8q6qzwfAP8BL41hEv3mwWgysP3eKdBR4CJ4PxJ2vtdeDvngKMMWeANaCaU9Sg2K5UKtccx/kcTux6iK21m+12uwm8G7q07mwAN+PiIf2vBmKMuaGqV0WklnD/QvD7pU/iUuOJSAvYcF33PcG2KTlM/AOeQQDfbBQsfAAAAABJRU5ErkJggg==" alt="" aria-hidden="true">
                     <a href="https://tvpaint.com/en/portfolio" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 4px;">
                         TVPaint
                         <span style="font-size: 0.7rem; color: #888;">Featured</span>
                     </a>
                 </div>
                 <div class="contact-item">
-                    <i data-lucide="pen-tool" class="icon"></i>
+                    <img class="icon skill-brand-icon procreate-icon" src="data:image/png;base64,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" alt="" aria-hidden="true">
                     <a href="https://www.instagram.com/p/DFc9y3EsWXx/?igsh=ZjJkOWNscW93c2ph" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 4px;">
                         Procreate
                         <span style="font-size: 0.7rem; color: #888;">Featured</span>
                     </a>
                 </div>
-                <div class="contact-item"><i data-lucide="layers" class="icon"></i> Adobe Creative Suite</div>
-                <div class="contact-item"><i data-lucide="video" class="icon"></i> Toon Boom Harmony</div>
-                <div class="contact-item"><i data-lucide="layout-dashboard" class="icon"></i> Rive & Figma</div>
-                <div class="contact-item"><i data-lucide="video" class="icon"></i> DaVinci Resolve</div>
+                <div class="contact-item"><img class="icon skill-brand-icon pdf-safe-icon" src="data:image/png;base64,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" alt="" aria-hidden="true"> Adobe Creative Suite</div>
+                <div class="contact-item"><img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADYUlEQVRoge2YTYgcRRTHf2+cXQkSdGVl6FfjouYgiEncrB8xXpQIkmAuYiJozEmEiCIoguccBD14E9HFQ1xPyUUPGkQNLKLkg4gm8eBBc9ipamcJKoIhynQ/D+kZaieZzW62sRH6BwNVr169+v+ni6rpgZqampqamprqkBHxpqo+IiIbzWysjIXM7KKInAohfANYGTXhCgacc5vN7CCwuaxFliwoctLMng0h/LSC9KaqPg/sujRVPvHevw9kg3pxdiH+OHB9qaov57yITHvvO6MSkiSZEZFZYHpo6FAI4al+Z2BgZmZmLE3TE8A9RegP4CPgr5JE3wzsBdYBiMgR7/3O4aRWq3VDo9E4ICIvA9ddqZCIbPfeHwVo9oNpmj4ci8+ybEu32z1XkngA2u32B3mefw2MmdkO59xW7/2x/niSJI+JyLvA7dG0C8ABM7tXRJ4EyPN8K3AUoBG52hRNmitbPECn0zkOzPX7hRCmpqYmnHPviciRWLyIzANbQghvisiPUXy83x48ATNbH631W9niIxYiITc553b3er13gFuinN/N7PUQwixXObGayw3+B+w1sw1DscNZlr3Y7XYXV1KgCgPxyReLP2dm+9M0/Xw1xRpXTymd4fslM7O3syzbuFrxUPEWMrNfgcfTND11rTWqeAI/9BsiMrsW8VCNgfhUyddarAoDpVIbqJoqDMT3wJrXr/oeeE5Vh38ur4qqt1ACnFDVt9rt9rprKVDpPVDQBF7L8/yMc277aotVeg+Y2S9RfIOZfamqh1R1cqXFKt1CIjInInuA81F4N3DWObdvJTViAwtR+7a1yxvJ4NsVkT+994d7vd7dIjIX5bTM7GCSJJ+q6tRyxQYG8jw/FsWfVtWHytNcqGq17uDSe3Gf7wEWFxe73vt9IrKLpS88O4GzqvoScGc/bmb/DHLiBZxzn5nZjqL7N/Ah8HNJ+qeAZ4Abi/53IYQHgF6cNDk5uX58fPwN4AVGbHERedR7/9VlBlT1VuAk0CpJ9CguNhqN+zudzplRCaq6DZgF7hoa+jiE8ATFYbDEYQhhIcuyTcAXJQuOOQ1sW058oeXbiYmJaRF5VUTmi88rSZLsITrJRv21KKr6oJndJyJJGapFpAuc9t7PM7Rtampqampqav6v/AvfWSQlA46i+AAAAABJRU5ErkJggg==" alt="" aria-hidden="true"> Toon Boom Harmony</div>
+                <div class="contact-item"><img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAB1UlEQVRoge2ZvU7DMBSFz62QYOjAWqeeOoD6GoDEgsTCXnXiLWDkBcqG4AW6MCHUF2BiQkyIgfyozEV0iH0Z2qAqPyitYoeq/qakjs/NSZwjXRdwODYbKhqQUnbiOD4kot2SWp8ARmEYfvx1UdW6uQaEEH0AAwA7JYskTJi5F0XR0JZuxoCUsqOUegGwvWSR32KNRmPf9/3Ahu5W+qo4jg+IKCnyDOCxZIETAF0ATa31MYAbG7oZA0QkFk7vwzC8LFNFCDEFcDE/lbZ0G2VE/jPOQN04A3WTSSGD+AvHZ0KI75LzTpMDZg7Sg9YMENEDM08ANDHL9aslJaZa61H6R2tLKAgCn5l7AL5WmD4lovPxePyeHrC5hBBF0dDzvCdmPgKwV2YOM79prUd5Nw9YNgDM3gSA26r01j6FnIG6yfsGjOR1gvGOzPO8NjO/YpbXqzBVSnXzUsNER5ZZQqbyWkrZAXCN5W8eAJpEdNdut730QG6Mmshrax1ZQtV57TqyApyBuin8BkztzFVNrgEhRF8pNSCipfO61WoV7syZILOETOW1KaztzJnC2s6cKdY+hZyBunEG6sZmR2ZE11pHZkrXWkdmSrfwb9b5E6usIzOt63BsKj+LwmRIoU98LQAAAABJRU5ErkJggg==" alt="" aria-hidden="true"> Rive & Figma</div>
+                <div class="contact-item"><img class="icon pdf-safe-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADYUlEQVRoge2YTYgcRRTHf2+cXQkSdGVl6FfjouYgiEncrB8xXpQIkmAuYiJozEmEiCIoguccBD14E9HFQ1xPyUUPGkQNLKLkg4gm8eBBc9ipamcJKoIhynQ/D+kZaieZzW62sRH6BwNVr169+v+ni6rpgZqampqamprqkBHxpqo+IiIbzWysjIXM7KKInAohfANYGTXhCgacc5vN7CCwuaxFliwoctLMng0h/LSC9KaqPg/sujRVPvHevw9kg3pxdiH+OHB9qaov57yITHvvO6MSkiSZEZFZYHpo6FAI4al+Z2BgZmZmLE3TE8A9RegP4CPgr5JE3wzsBdYBiMgR7/3O4aRWq3VDo9E4ICIvA9ddqZCIbPfeHwVo9oNpmj4ci8+ybEu32z1XkngA2u32B3mefw2MmdkO59xW7/2x/niSJI+JyLvA7dG0C8ABM7tXRJ4EyPN8K3AUoBG52hRNmitbPECn0zkOzPX7hRCmpqYmnHPviciRWLyIzANbQghvisiPUXy83x48ATNbH631W9niIxYiITc553b3er13gFuinN/N7PUQwixXObGayw3+B+w1sw1DscNZlr3Y7XYXV1KgCgPxyReLP2dm+9M0/Xw1xRpXTymd4fslM7O3syzbuFrxUPEWMrNfgcfTND11rTWqeAI/9BsiMrsW8VCNgfhUyddarAoDpVIbqJoqDMT3wJrXr/oeeE5Vh38ur4qqt1ACnFDVt9rt9rprKVDpPVDQBF7L8/yMc277aotVeg+Y2S9RfIOZfamqh1R1cqXFKt1CIjInInuA81F4N3DWObdvJTViAwtR+7a1yxvJ4NsVkT+994d7vd7dIjIX5bTM7GCSJJ+q6tRyxQYG8jw/FsWfVtWHytNcqGq17uDSe3Gf7wEWFxe73vt9IrKLpS88O4GzqvoScGc/bmb/DHLiBZxzn5nZjqL7N/Ah8HNJ+qeAZ4Abi/53IYQHgF6cNDk5uX58fPwN4AVGbHERedR7/9VlBlT1VuAk0CpJ9CguNhqN+zudzplRCaq6DZgF7hoa+jiE8ATFYbDEYQhhIcuyTcAXJQuOOQ1sW058oeXbiYmJaRF5VUTmi88rSZLsITrJRv21KKr6oJndJyJJGapFpAuc9t7PM7Rtampqampqav6v/AvfWSQlA46i+AAAAABJRU5ErkJggg==" alt="" aria-hidden="true"> DaVinci Resolve</div>
             </div>
         </section>
 
@@ -667,45 +848,43 @@
             <h2>Interests</h2>
             <div class="interests-section">
                 <div class="interest-item">
-                    <span aria-hidden="true" style="margin-right: 6px;">✍️</span>
+                    <span aria-hidden="true" style="margin-right: 0;">✍️</span>
                     <span>Writing</span>
                 </div>
                 <div class="interest-item">
-                    <span aria-hidden="true" style="margin-right: 6px;">🖋️</span>
+                    <span aria-hidden="true" style="margin-right: 0;">🖋️</span>
                     <span>Poetry</span>
                 </div>
                 <div class="interest-item">
-                    <span aria-hidden="true" style="margin-right: 6px;">🏊‍♀️</span>
+                    <span aria-hidden="true" style="margin-right: 0;">🏊‍♀️</span>
                     <span>Swimming</span>
                 </div>
                 <div class="interest-item">
-                    <span aria-hidden="true" style="margin-right: 6px;">🏸</span>
+                    <span aria-hidden="true" style="margin-right: 0;">🏸</span>
                     <span>Badminton</span>
                 </div>
                 <div class="interest-item">
-                    <span aria-hidden="true" style="margin-right: 6px;">⛸️</span>
+                    <span aria-hidden="true" style="margin-right: 0;">⛸️</span>
                     <span>Skating</span>
                 </div>
                  <div class="interest-item">
-                    <span aria-hidden="true" style="margin-right: 6px;">📸</span>
+                    <span aria-hidden="true" style="margin-right: 0;">📸</span>
                     <span>Photography</span>
                 </div>
             </div>
         </section>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-
-    <script>
+<script>
         // Wait for the window to load completely before running scripts
-        window.addEventListener("load", () => {
+        (function() {
+            if (window.lucide) lucide.createIcons();
             // --- DOM Element References ---
             const darkModeToggle = document.getElementById('dark-mode-toggle');
             const body = document.body;
             const container = document.querySelector('.container');
             const downloadButton = document.getElementById('download-btn');
             const themeText = document.getElementById('theme-text');
-            const themeIcon = document.getElementById('theme-icon');
+            let themeIcon = document.getElementById('theme-icon');
             const phoneNumberContainer = document.getElementById('phone-number-container');
             const phoneLink = document.getElementById('phone-link');
             const languagesItem = document.getElementById('languages-item'); // Get the languages item
@@ -744,150 +923,141 @@
                 ...interestItems // Added interest items
             ];
 
+
+            function readThemePreference() {
+                try {
+                    return window.localStorage.getItem('dark-mode') === 'enabled';
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function saveThemePreference(isDark) {
+                try {
+                    window.localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
+                } catch (e) {
+                    // Theme still works for the current page even if storage is blocked.
+                }
+            }
+
             // --- Dark Mode Logic ---
+            // Self-contained theme toggle. Uses the existing CSS classes and
+            // does not depend on any icon library.
 
-            // Function to apply dark mode styles
-            function enableDarkMode() {
-                localStorage.setItem('dark-mode', 'enabled');
-                elementsToToggle.forEach(el => el.classList.add('dark-mode'));
-                themeText.textContent = 'Dark Mode'; // Update text for accessibility
-                themeIcon.setAttribute('data-lucide', 'moon'); // Change icon to moon
-                lucide.createIcons(); // Re-render lucide icons
-                // Change background image for dark mode
-                if (backgroundImage) {
-                    backgroundImage.src = darkModeImageUrl;
-                }
-                // Change petal color for dark mode
-                document.querySelectorAll('.petal').forEach(petal => {
-                    petal.style.backgroundColor = darkModePetalColor;
+            function applyTheme(isDark) {
+                const selectors = [
+                    'body',
+                    '.container',
+                    '#download-btn',
+                    '#dark-mode-toggle',
+                    '#languages-item',
+                    '#local-time-display',
+                    '.top-left-controls',
+                    '#background-container',
+                    '#background-image',
+                    'h1',
+                    '.subtext',
+                    '.contact-combo',
+                    '.contact-item',
+                    '.bullet',
+                    'p',
+                    'h2',
+                    'li',
+                    '.experience-company',
+                    '.experience-role',
+                    '.experience-duration',
+                    'a',
+                    '.graduation-year',
+                    '.interest-item'
+                ];
+
+                document.querySelectorAll(selectors.join(',')).forEach(function(el) {
+                    el.classList.toggle('dark-mode', isDark);
                 });
-            }
 
-            // Function to remove dark mode styles
-            function disableDarkMode() {
-                localStorage.setItem('dark-mode', 'disabled');
-                elementsToToggle.forEach(el => el.classList.remove('dark-mode'));
-                themeText.textContent = 'Light Mode'; // Update text for accessibility
-                themeIcon.setAttribute('data-lucide', 'sun'); // Change icon to sun
-                lucide.createIcons(); // Re-render lucide icons
-                 // Change background image back for light mode
                 if (backgroundImage) {
-                    backgroundImage.src = lightModeImageUrl;
+                    backgroundImage.src = isDark
+                        ? darkModeImageUrl
+                        : lightModeImageUrl;
                 }
-                 // Change petal color back for light mode
-                 document.querySelectorAll('.petal').forEach(petal => {
-                    petal.style.backgroundColor = lightModePetalColor;
+
+                document.querySelectorAll('.petal').forEach(function(petal) {
+                    petal.style.backgroundColor = isDark
+                        ? darkModePetalColor
+                        : lightModePetalColor;
                 });
-            }
 
-            // Check local storage on load and apply theme
-            if (localStorage.getItem('dark-mode') === 'enabled') {
-                enableDarkMode();
-            } else {
-                disableDarkMode();
-            }
+                saveThemePreference(isDark);
 
-            // Add click listener to the toggle button
-            darkModeToggle.addEventListener('click', () => {
-                if (localStorage.getItem('dark-mode') === 'enabled') {
-                    disableDarkMode();
-                } else {
-                    enableDarkMode();
+                // Update the icon without using the Lucide renderer.
+                const icon = document.getElementById('theme-icon');
+                if (icon) {
+                    icon.setAttribute('aria-label', isDark ? 'Dark mode' : 'Light mode');
+                    icon.innerHTML = isDark
+                        ? '<path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>'
+                        : '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>';
                 }
-            });
+
+                if (themeText) {
+                    themeText.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+                }
+            }
+
+            // Restore saved theme.
+            const savedDarkMode = readThemePreference();
+            applyTheme(savedDarkMode);
+
+            // Toggle directly from the button.
+            darkModeToggle.onclick = function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                const isDark = !document.body.classList.contains('dark-mode');
+                applyTheme(isDark);
+            };
+
+
+            // --- PDF Download ---
+            // The download control is a direct file link. This avoids browser
+            // print-dialog restrictions and third-party PDF libraries.
 
 
             // --- PDF Download Logic ---
-            document.getElementById("download-btn").addEventListener("click", () => {
-                const element = document.getElementById("resume-content"); // Element to convert to PDF
+            // Icons are rendered as inline SVGs before html2pdf captures the resume.
+            // This keeps them self-contained in the PDF and avoids missing external/icon-font assets.
+            document.getElementById("download-btn").addEventListener("click", async () => {
+                const element = document.getElementById("resume-content");
+
+                // Ensure every Lucide placeholder inside the resume has already been
+                // converted to a real inline SVG before the PDF snapshot is taken.
+                if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                    window.lucide.createIcons();
+                }
+
+                // Give the browser one paint cycle to finish SVG layout before capture.
+                await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
                 const opt = {
-                    margin:       0.5, // Margin in inches
-                    filename:     'Mehnaaz_Husain_Resume.pdf', // Output filename
-                    image:        { type: 'jpeg', quality: 0.98 }, // Image quality
-                    html2canvas:  { scale: 2, useCORS: true }, // html2canvas options
-                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' } // jsPDF options
+                    margin:       0.5,
+                    filename:     'Mehnaaz_Husain_Resume.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
                 };
-                // Generate and save the PDF
+
                 html2pdf().set(opt).from(element).save();
             });
 
-            // --- Dynamic Phone Number Country Code ---
-            // Attempts to fetch user's country code based on IP and update the phone number display and link.
-            // This relies on an external API and may not always be accurate or available.
-            function getUserCountryCode() {
-                return fetch('https://ipapi.co/json/')
-                    .then(response => {
-                        if (!response.ok) {
-                            // Log error if API call fails
-                            console.error('Failed to fetch IP data, status:', response.status);
-                            throw new Error('Failed to fetch IP data');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data && data.country_calling_code) {
-                            return data.country_calling_code; // Return fetched country code
-                        } else {
-                            // Log warning if country code is not in data
-                            console.warn('Country calling code not found in IP data:', data);
-                            return '+91'; // Default to +91 if not found
-                        }
-                    })
-                    .catch(error => {
-                        // Log error and return default on any fetch/processing error
-                        console.error('Error fetching or processing IP data:', error);
-                        return '+91'; // Default to +91 on error
-                    });
-            }
+            // --- Fixed Phone Number ---
+            // Keep the portfolio owner's Indian country code permanently at +91.
+            // This must NOT change based on the viewer's location/IP.
+            const basePhoneNumber = '9461153073';
+            const fixedCountryCode = '+91';
+            const formattedNumber = `${fixedCountryCode} ${basePhoneNumber.slice(0, 4)} ${basePhoneNumber.slice(4, 7)} ${basePhoneNumber.slice(7)}`;
+            const telLinkNumber = `${fixedCountryCode}${basePhoneNumber}`;
 
-            // Call the function and update the phone number elements
-            getUserCountryCode().then(countryCode => {
-                const basePhoneNumber = '9461153073';
-                // Format the phone number for display (e.g., +91 9461 153 073)
-                const formattedNumber = `${countryCode} ${basePhoneNumber.slice(0, 4)} ${basePhoneNumber.slice(4, 7)} ${basePhoneNumber.slice(7)}`;
-                // Format the phone number for the tel: link (e.g., tel:+919461153073)
-                const telLinkNumber = `${countryCode}${basePhoneNumber}`;
+            if (phoneNumberContainer) { phoneNumberContainer.textContent = formattedNumber; }
+            if (phoneLink) { phoneLink.href = `tel:${telLinkNumber}`; }
 
-                // Update the DOM elements
-                if (phoneNumberContainer) { phoneNumberContainer.textContent = formattedNumber; }
-                if (phoneLink) { phoneLink.href = `tel:${telLinkNumber}`; }
-            });
-
-            // --- Local Time and Date Display Logic ---
-
-            // Function to update the time and date display
-            function updateLocalTime() {
-                const now = new Date();
-
-                // Options for date formatting (e.g., "6 May 2025")
-                const dateOptions = {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                };
-                const formattedDate = now.toLocaleDateString(undefined, dateOptions);
-
-                // Options for time formatting (e.g., "8:37 AM")
-                const timeOptions = {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true // Use 12-hour format with AM/PM
-                };
-                 // Use toLocaleTimeString for just the time part
-                const formattedTime = now.toLocaleTimeString(undefined, timeOptions);
-
-
-                if (localTimeDisplay) {
-                    // Combine date and time with a bullet point separator
-                    localTimeDisplay.textContent = `${formattedDate} \u2022 ${formattedTime}`; // \u2022 is the Unicode for a bullet point
-                }
-            }
-
-            // Update the time immediately on load
-            updateLocalTime();
-
-            // Update the time every second
-            setInterval(updateLocalTime, 1000);
 
             // --- Cursor Petal Trail Logic ---
             const petalContainer = document.createElement('div'); // Create a container for petals
@@ -964,10 +1134,228 @@
             });
 
 
-            // Initial rendering of Lucide icons on page load
+            // Initial rendering of icons on page load.
+            // Theme switching is handled independently above.
             lucide.createIcons();
-        });
+        })();
     </script>
+
+
+
+
+<script>
+(function () {
+    const emailLink = Array.from(document.querySelectorAll('a[href^="mailto:"]'))
+        .find(a => a.textContent.trim().toLowerCase() === 'mehnaazhusain@gmail.com');
+
+    if (!emailLink) return;
+
+    const mailtoUrl = 'mailto:mehnaazhusain@gmail.com?subject=Hello%20Mehnaaz%20%E2%80%94%20Portfolio&body=Hey%21%20I%20just%20saw%20your%20profile%20and%20wanted%20to%20reach%20out%20and%20connect%20%E2%80%94';
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=mehnaazhusain@gmail.com&su=Hello%20Mehnaaz%20%E2%80%94%20Portfolio&body=Hey%21%20I%20just%20saw%20your%20profile%20and%20wanted%20to%20reach%20out%20and%20connect%20%E2%80%94';
+
+    emailLink.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const overlay = document.createElement('div');
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.innerHTML = `
+            <div class="email-choice-backdrop"></div>
+            <div class="email-choice-card">
+                <button class="email-choice-close" type="button" aria-label="Close">×</button>
+                <div class="email-choice-title">Let’s connect</div>
+                <div class="email-choice-subtitle">Choose how you’d like to email me.</div>
+                <button class="email-choice-button" data-action="preferred" type="button">
+                    <span>Open preferred email app</span>
+                    <span>→</span>
+                </button>
+                <button class="email-choice-button" data-action="gmail" type="button">
+                    <span>Open Gmail</span>
+                    <span>→</span>
+                </button>
+                <div class="email-choice-preview">
+                    <div>To: <strong>mehnaazhusain@gmail.com</strong></div>
+                    <div class="email-choice-message">Hey! I just saw your profile and wanted to reach out and connect —</div>
+                </div>
+            </div>
+        `;
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .email-choice-backdrop {
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,.28);
+                z-index: 9998;
+                backdrop-filter: blur(4px);
+            }
+            .email-choice-card {
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: min(390px, calc(100vw - 32px));
+                box-sizing: border-box;
+                padding: 24px;
+                border-radius: 18px;
+                background: #fff;
+                color: #171717;
+                box-shadow: 0 18px 55px rgba(0,0,0,.18);
+                z-index: 9999;
+                font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+            .dark-mode .email-choice-card {
+                background: #1c1c1e;
+                color: #f5f5f7;
+            }
+            .email-choice-close {
+                position: absolute;
+                top: 10px;
+                right: 12px;
+                border: 0;
+                background: transparent;
+                color: inherit;
+                font-size: 25px;
+                line-height: 1;
+                cursor: pointer;
+                padding: 5px;
+            }
+            .email-choice-title {
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+            .email-choice-subtitle {
+                font-size: 14px;
+                opacity: .62;
+                margin-bottom: 18px;
+            }
+            .email-choice-button {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid rgba(128,128,128,.25);
+                background: transparent;
+                color: inherit;
+                border-radius: 11px;
+                padding: 13px 14px;
+                margin-top: 9px;
+                font: inherit;
+                font-size: 15px;
+                cursor: pointer;
+                text-align: left;
+            }
+            .email-choice-button:hover {
+                background: rgba(128,128,128,.08);
+            }
+            .email-choice-preview {
+                margin-top: 17px;
+                padding-top: 15px;
+                border-top: 1px solid rgba(128,128,128,.18);
+                font-size: 12px;
+                line-height: 1.5;
+                opacity: .68;
+            }
+            .email-choice-message {
+                margin-top: 5px;
+            }
+        `;
+        document.head.appendChild(style);
+        document.body.appendChild(overlay);
+
+        const close = () => {
+            overlay.remove();
+            style.remove();
+        };
+
+        overlay.querySelector('.email-choice-close').addEventListener('click', close);
+        overlay.querySelector('.email-choice-backdrop').addEventListener('click', close);
+
+        overlay.querySelector('[data-action="preferred"]').addEventListener('click', () => {
+            window.location.href = mailtoUrl;
+            close();
+        });
+
+        overlay.querySelector('[data-action="gmail"]').addEventListener('click', () => {
+            window.open(gmailUrl, '_blank', 'noopener');
+            close();
+        });
+
+        overlay.addEventListener('keydown', event => {
+            if (event.key === 'Escape') close();
+        });
+    });
+})();
+</script>
+
+<script id="stable-local-time">
+(function () {
+    function updateLocalTime() {
+        const el = document.getElementById('local-time-display');
+        if (!el) return;
+
+        const now = new Date();
+        const date = now.toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        const time = now.toLocaleTimeString(undefined, {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+        });
+
+        el.textContent = date + ' · ' + time;
+    }
+
+    updateLocalTime();
+    setInterval(updateLocalTime, 30000);
+})();
+</script>
+
+
+<script id="stable-theme-controller">
+(function () {
+    const button = document.getElementById('dark-mode-toggle');
+    const icon = document.getElementById('theme-icon');
+    const label = document.getElementById('theme-text');
+    const bg = document.getElementById('background-image');
+    const bgContainer = document.getElementById('background-container');
+
+    if (!button) return;
+
+    const sun = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>';
+    const moon = '<path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z"></path>';
+
+    function setTheme(dark) {
+        document.body.classList.toggle('dark-mode', dark);
+        if (bg) bg.classList.toggle('dark-mode', dark);
+        if (bgContainer) bgContainer.classList.toggle('dark-mode', dark);
+
+        if (label) label.textContent = dark ? 'Dark Mode' : 'Light Mode';
+        if (icon) {
+            icon.innerHTML = dark ? moon : sun;
+            icon.setAttribute('aria-label', dark ? 'Dark mode' : 'Light mode');
+        }
+
+        try { localStorage.setItem('darkMode', dark ? 'true' : 'false'); } catch (_) {}
+    }
+
+    let dark = false;
+    try { dark = localStorage.getItem('darkMode') === 'true'; } catch (_) {}
+
+    // Remove duplicate handlers from earlier iterations by replacing onclick.
+    button.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        setTheme(!document.body.classList.contains('dark-mode'));
+    };
+
+    setTheme(dark);
+})();
+</script>
+
 </body>
 </html>
-
